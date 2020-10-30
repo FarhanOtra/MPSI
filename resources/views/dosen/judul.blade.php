@@ -8,7 +8,7 @@
   <meta name="author" content="Creative Tim">
   <title>KELOMPOK 2 - Aplikasi Pengajuan Judul TA</title>
   <!-- Favicon -->
-  <!-- <link rel="icon" href="{{ asset('assets/img/brand/favicon.png') }}" type="image/png"> -->
+  <link rel="icon" href="{{ asset('assets/img/brand/unand.png') }}" type="image/png">
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
   <!-- Icons -->
@@ -27,11 +27,11 @@
   <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
       <!-- Brand -->
-      <!-- <div class="sidenav-header  align-items-center">
+      <div class="sidenav-header  align-items-center">
         <a class="navbar-brand" href="javascript:void(0)">
           <img src="{{ asset('assets/img/brand/blue.png') }}" class="navbar-brand-img" alt="...">
         </a>
-      </div> -->
+      </div> 
       <div class="navbar-inner">
         <!-- Collapse -->
         <div class="collapse navbar-collapse" id="sidenav-collapse-main">
@@ -50,7 +50,7 @@
             </a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="examples/register.html">
+            <a class="nav-link" href="{{route('dosen.grup')}}">
                 <i class="ni ni-chat-round text-pink"></i>
                 <span class="nav-link-text">Lihat Grup Bimbingan</span>
             </a>
@@ -89,6 +89,26 @@
                 <div class="card">
                     <div class="card-header">Daftar Permintaan Bimbingan TA</div>
 
+                    @if (session('pesan'))
+                    <h5 class="card-title">
+                      <div class="alert alert-success" role="alert">
+                        <i class="ni ni-like-2"></i> {{session('pesan')}}
+                      </div>
+                    </h5>
+                 @endif
+                 @if (session('pesans'))
+                <h5 class="card-title">
+                  <div class="alert alert-warning" role="alert">
+                    <i class="ni ni-like-2"></i> {{session('pesans')}}
+                  </div>
+                </h5>
+             @endif
+                @if (count($errors) > 0)
+                  <div class="alert alert-danger">
+                    Cek Kembali Input Anda !!
+                  </div>
+                @endif
+
                     <div class="card-body">
                       <div class="table-responsive">
                         <table class="table align-items-center table-dark">
@@ -109,8 +129,8 @@
                               <td>{{$permintaan->rancangan->mahasiswa->nama}}</td>
                               <td>{{$permintaan->rancangan->judul }}</td>
                               <td>
-                                @if ($permintaan->rancangan->status==1)
-                                <a href="{{ route('judul.show', [$permintaan->id_rancangan]) }}" type="button" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i>
+                                @if ($permintaan->rancangan->status==2)
+                                <a href="{{ route('judul.show', [$permintaan->id_rancangan]) }}" type="button" class="btn btn-primary btn-sm"><i class="fa fa-search" aria-hidden="true"></i>
                                 </a>
                                 </i></a>
 

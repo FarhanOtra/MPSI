@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 //Auth::routes();
@@ -30,6 +30,11 @@ Route::get('dataTableUSer', 'UserController@dataTable')->name('dataTableUser');
 //Route By Ciwi Ciwi
 Route::get('/mahasiswa/list/{id}/tambah','MahasiswaController@tambah')->name('tambahjudul');
 Route::post('/mahasiswa/list{id}/update1','MahasiswaController@store')->name('updatejudul1');
+
+Route::get('/mahasiswa/upload','MahasiswaController@upload')->name('mahasiswa.upload');
+Route::get('/mahasiswa/upload/{id}','MahasiswaController@supload')->name('mahasiswa.supload');
+Route::post('/mahasiswa/upload/{id}','MahasiswaController@suploads')->name('mahasiswa.suploads');
+
 Route::get('/mahasiswa/detail/{id}', 'MahasiswaController@detail')->name('detail');
 Route::get('mahasiswa/detail/{id}/edit','MahasiswaController@edit')->name('edit');
 Route::post('/mahasiswa/detail/{id}/update', 'MahasiswaController@update')->name('update');
@@ -48,6 +53,7 @@ Route::get('/logina', function(){
 Route::post('/masuk', 'loginController@login')->name('masuk');
 Route::get('/keluar', 'loginController@logout')->name('keluar');
 Route::get('/dosen/terima/{id}', 'dosenController@terima')->name('terima');
+Route::get('/dosen/grup', 'dosenController@grup')->name('dosen.grup');
 Route::get('/dosen/tolak/{id}', 'dosenController@tolak')->name('tolak');
 Route::post('/dosen/tolak/{id}/tolaks', 'dosenController@tolaks')->name('tolaks');
 

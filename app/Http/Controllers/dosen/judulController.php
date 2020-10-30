@@ -27,9 +27,10 @@ class judulController extends Controller
         $user_id = auth()->user()->id;
         $data=Detail_dosbing:: join('rancangan', 'detail_dosbing.id_rancangan', '=', 'rancangan.id')
                         ->where('id_dosen', '=', $user_id)
-                        ->where('rancangan.status', '1')
+                        ->where('rancangan.status', '2')
                         ->get();
-        return view('dosen.judul', compact('data'));
+        $status_rancangan = config('rancangan.status_rancangan');
+        return view('dosen.judul', compact('data','status_rancangan'));
     }
 
     /**
@@ -104,11 +105,11 @@ class judulController extends Controller
         $user_id = auth()->user()->id;
         $data=Detail_dosbing:: join('rancangan', 'detail_dosbing.id_rancangan', '=', 'rancangan.id')
                         ->where('id_dosen', '=', $user_id)
-                        ->where('rancangan.status', '1')
+                        ->where('rancangan.status', '2')
                         ->get();
         
     
-        return redirect()->route('judul.index', compact('data'))->with('pesan','Berhasil Revisi');
+        return redirect()->route('judul.index', compact('data'))->with('pesans','Berhasil Revisi Judul');
         
     }
     public function updatess( $id)
@@ -123,11 +124,12 @@ class judulController extends Controller
         $user_id = auth()->user()->id;
         $data=Detail_dosbing:: join('rancangan', 'detail_dosbing.id_rancangan', '=', 'rancangan.id')
                         ->where('id_dosen', '=', $user_id)
-                        ->where('rancangan.status', '1')
+                        ->where('rancangan.status', '2')
                         ->get();
+                        
         
     
-        return redirect()->route('judul.index')->with('pesan','Berhasil Revisi');
+        return redirect()->route('judul.index')->with('pesan','Berhasil Acc Judul');
         
     }
 
